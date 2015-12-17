@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="" href="">
+  <information>
+    <title>Visual Cmmdc</title>
+    <vendor>Transilvania University of Brasov</vendor>
+  </information>
+  <resources>
+    <!-- Application Resources -->
+    <j2se version="1.6+"
+        href="http://java.sun.com/products/autodl/j2se"
+        max-heap-size="128m" />
+      <jar href="cmmdc.jar" main="true" />
+  </resources>
+  <resources os="Windows">
+     <jfx:javafx-runtime version="2.0+" 
+        href="http://javadl.sun.com/webapps/download/GetFile/
+        javafx-latest/windows-i586/javafx2.jnlp"/>
+  </resources>
+  <security>
+    <all-permissions/>
+  </security>
+  <applet-desc 
+     name="VisualCmmdc Applet"
+     main-class="VisualCmmdc"
+     width="300"
+     height="300">
+   </applet-desc>
+</jnlp>			

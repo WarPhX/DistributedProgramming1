@@ -1,0 +1,174 @@
+\documentclass[12pt]{book}
+\usepackage{listings}
+\lstset{numbers=left,numberstyle=\tiny,stepnumber=1,numbersep=5pt,numberblanklines=false,showstringspaces=false}
+\lstset{frame=single} 
+\newtheorem{exemplu}{Exemplul}[section]
+\begin{document}
+
+\chapter{Testare cu \textit{junit}}
+
+Verificarea / testarea automat\u{a} a programelor Java se poate
+face cu produsul informatic \textit{junit.}
+Deseori se formuleaz\u{a} probleme de test ale c\u{a}ror
+rezultate sunt cunoscute, cu rolul de a  verifica func\c{t}ionarea  
+unui program de rezolvare, pentru depistarea unor gre\c{s}eli. 
+
+S-a dezvoltat \c{s}i o metodologie de lucru \textit{Test Driven Development - (TDD)} care presupune pentru orice
+clas\u{a} elaborat\u{a} realizarea unui program de testare, chiar a priori.
+
+Un alt produs care are acela\c{s}i scop de verificare a rezultatelor este \textit{TestNG.}
+
+\textit{junit} permite verificarea automat\u{a} a rezultatelor furnizate de
+un program, pentru o mul\c{t}ime de date de test.
+
+\textbf{Instalarea produsului} const\u{a} din dezarhivarea fi\c{s}ierului desc\u{a}rcat
+\^{\i}ntr-un catalog \texttt{JUNIT\_HOME}.
+Pentru compilare \c{s}i execu\c{t}ie, variabila de sistem \texttt{classpath}
+trebuie s\u{a} con\c{t}in\u{a} referin\c{t}a \texttt{JUNIT\_HOME$\backslash$junit-*.jar.}
+
+\textbf{Utilizarea produsului} \^{\i}ntr-un program Java const\u{a} din:
+\begin{enumerate}
+\item
+Declararea resurselor pachetului \textit{junit} prin\\
+\texttt{import org.junit.*;}\\
+\texttt{import static org.junit.Assert.*;}
+\item
+Declararea clasei cu testele \textit{junit} - uzual \^{\i}n metoda \texttt{main.}\\
+\texttt{org.junit.runner.JUnitCore.main("}\textit{AppClass}\texttt{");}
+\item
+Eventuale opera\c{t}ii necesare \^{\i}nainte sau dup\u{a} efectuarea testelor se precizeaz\u{a} respectiv,
+\^{\i}n c\^{a}te o metod\u{a} care a fost declarat\u{a} cu adnotarea \texttt{@org.junit.Before} \c{s}i
+respectiv, \texttt{@org.junit.After.}
+\item
+Testele se definesc \^{\i}n metode declarate cu adnotarea \texttt{@org.junit.Test.}
+
+Clasa \texttt{Assert} posed\u{a} metodele de verificare ale unui rezultat:
+\begin{itemize}
+\item
+\texttt{static void assertEquals(}Tip \textit{a\c{s}teptat}, Tip \textit{actual}\texttt{)}
+
+unde Tip poate fi \texttt{double, int, long, Object.}
+\item
+\texttt{static void assertEquals(double} \textit{a\c{s}teptat,} \texttt{double} \textit{actual,} \texttt{double} \textit{delta}\texttt{)}
+
+Testul reu\c{s}e\c{s}te dac\u{a} $|$\textit{a\c{s}teptat-actual}$|<delta.$
+\item
+\texttt{static void assertArrayEquals(}Tip[\ ] \textit{a\c{s}teptat}, Tip[\ ] \textit{actual}\texttt{)}
+
+unde Tip poate fi \texttt{byte, char, int, long, short, Object.}
+\item
+\texttt{static void assertTrue(boolean} \textit{condi\c{t}ie}\texttt{)}
+\item
+\texttt{static void assertFalse(boolean} \textit{condi\c{t}ie}\texttt{)}
+\item
+\texttt{static void assertNull(Object} \textit{object}\texttt{)}
+\item
+\texttt{static void assertNotNull(Object} \textit{object}\texttt{)}
+\end{itemize}
+%Fiecare din metodele anterioare este dublat\u{a} de o metod\u{a} av\^{a}nd ca
+%prim argument o variabil\u{a} de tip \texttt{String,} 
+\end{enumerate}
+\^{I}n cazul exemplului  
+\scriptsize
+\lstset{language=Java}
+\begin{lstlisting}
+import org.junit.*;
+import static org.junit.Assert.*;
+
+public class Exemplu{
+  public double rezultat=1.0;
+  public double eps=1e-6;
+  
+  double getValue(){
+    return 1.0000001;
+  }
+  
+  @Test 
+  public void test(){   
+    assertEquals(rezultat,getValue(),eps);
+  }
+  
+  public static void main(String[] args){
+    org.junit.runner.JUnitCore.main("Exemplu");
+  }
+}
+\end{lstlisting}
+\normalsize
+se ob\c{t}ine
+\scriptsize
+\begin{verbatim}
+JUnit version 4.5
+.
+Time: 0.03
+
+OK (1 test)
+\end{verbatim}
+\normalsize
+
+\begin{exemplu} Testarea clasei App ( \ref{appSocketCmmdc}).
+\end{exemplu}
+
+\scriptsize
+\lstset{language=Java}
+\begin{lstlisting}
+package server;
+import org.junit.*;
+import static org.junit.Assert.*;
+
+public class TestApp{
+  private App app;
+  
+  @Before
+  public void initializare(){
+    app=new App(); 
+  }
+  
+  @Test 
+  public void test(){  
+    assertEquals(8,app.cmmdc(56,24));
+  }
+  
+  
+  public static void main(String[] args){
+    org.junit.runner.JUnitCore.main("server.TestApp");
+  }
+}
+\end{lstlisting}
+\normalsize
+
+\begin{exemplu} Testarea clasei MyMServer ( \ref{appMyMServer}).
+\end{exemplu}
+
+\scriptsize
+\lstset{language=Java}
+\begin{lstlisting}
+package server.impl;
+import server.*;
+import org.junit.*;
+import static org.junit.Assert.*;
+import java.net.ServerSocket;
+import iserver.IMyMServer;
+
+public class TestMyMServer{
+  private IMyMServer obj;
+  
+  @Before
+  public void initializare(){
+    obj=new MyMServer(); 
+  }
+  
+  @Test 
+  public void test(){ 
+    int port=7999;  
+    Object result=obj.getServerSocket(port);
+    assertNotNull("Must not return a null response",result);
+    assertEquals(ServerSocket.class,result.getClass());
+  }
+  
+  public static void main(String[] args){
+    org.junit.runner.JUnitCore.main("server.impl.TestMyMServer");
+  }
+}
+\end{lstlisting}
+\normalsize
+\end{document}

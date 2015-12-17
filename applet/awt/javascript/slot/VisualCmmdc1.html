@@ -1,0 +1,65 @@
+<HTML>
+  <HEAD>
+  <script src="https://www.java.com/js/deployJava.js"></script>
+	<script language="javascript">
+	<!--
+  var mField="1";
+  var nField="1";;
+  
+	function apel() {
+    mField=document.getElementById("m").value;
+    nField=document.getElementById("n").value;
+	  //alert(mField+" : "+nField);
+    return [mField,nField];
+	}
+  /*
+  function callApplet(){ 
+    var attributes = { code:'cmmdc',width:300, height:100}; 
+    var parameters = {jnlp_href: 'cmmdc.jnlp'}; 
+    var minimumVersion= '1.6';
+    deployJava.runApplet(attributes,parameters,minimumVersion); 
+  }
+  */
+	//-->
+	</script>
+  </HEAD>
+  <BODY BGCOLOR="#AAEEAA">
+    <CENTER>
+    <h1>Cel mai mare divizor comun</H1>
+    <p> Valorile parametrilor se introduc &#238;naintea accept&#259;rii miniaplica&#355;iei</p>
+    
+    <p> Introduce&#355;i: </p>
+    <table> 
+        <tr>
+          <td><label> Primul num&#259;r </label></td>
+          <td>    
+             <input type="text" id="m" size="5" value="1"
+             required pattern="[0-9]" min="1">
+          </td>
+        </tr>  
+        <tr>
+          <td><label> Al doilea num&#259;r </label></td>
+          <td>
+             <input type="text" id="n" size="5" value="1"
+             required pattern="[0-9]" min="1">
+          </td>
+        </tr>
+        <!--
+        <tr>
+          <td>
+             <input type="button" value="Calculeaza" onClick="callApplet()"/>
+          </td>
+        </tr>
+        -->
+    </table>    
+    </CENTER> 
+ 
+  <script language="javascript">  
+    var attributes = { code:'cmmdc1',width:300, height:100}; 
+    var parameters = {jnlp_href: 'cmmdc1.jnlp'}; 
+    var minimumVersion= '1.6';
+    deployJava.runApplet(attributes,parameters,minimumVersion); 
+  </script> 
+  
+  </BODY>
+</HTML>

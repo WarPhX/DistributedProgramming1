@@ -1,0 +1,1 @@
+mvn archetype:create -DgroupId=jsp -DartifactId=cmmdcjsp -DarchetypeArtifactId=maven-archetype-webapp 

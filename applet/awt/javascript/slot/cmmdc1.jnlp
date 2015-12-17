@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="" href="">
+    <information>
+        <title>Visual Cmmdc 1</title>
+        <vendor>Transilvania University of Brasov</vendor>
+    </information>
+    <resources>
+        <!-- Application Resources -->
+        <j2se version="1.6+"
+              href="http://java.sun.com/products/autodl/j2se"
+              max-heap-size="128m" />
+
+        <jar href="cmmdc1.jar" main="true" />
+    </resources>
+    <security>
+      <all-permissions/>
+    </security>
+    <applet-desc 
+         name="VisualCmmdc1 Applet"
+         main-class="VisualCmmdc1"
+         width="300"
+         height="100">
+     </applet-desc>
+</jnlp>			
